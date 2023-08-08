@@ -2,9 +2,11 @@ package com.project.mutsa_sns.service;
 
 import com.project.mutsa_sns.dto.ArticleDetailResponseDto;
 import com.project.mutsa_sns.dto.ArticleListResponseDto;
+import com.project.mutsa_sns.dto.CommentResponseDto;
 import com.project.mutsa_sns.dto.ResponseDto;
 import com.project.mutsa_sns.entity.ArticleEntity;
 import com.project.mutsa_sns.entity.ArticleImageEntity;
+import com.project.mutsa_sns.entity.CommentEntity;
 import com.project.mutsa_sns.entity.UserEntity;
 import com.project.mutsa_sns.repository.ArticleImageRepository;
 import com.project.mutsa_sns.repository.ArticleRepository;
@@ -95,6 +97,7 @@ public class ArticleService {
         responseDto.setUsername(article.getUser().getUsername());
         responseDto.setTitle(article.getTitle());
         responseDto.setContent(article.getContent());
+        responseDto.setDeletedAt(article.getDeletedAt());
 
         List<String> imageUrl = new ArrayList<>();
         for (ArticleImageEntity image : article.getArticleImages()) {
@@ -103,6 +106,18 @@ public class ArticleService {
         responseDto.setImageUrl(imageUrl);
 
         // 댓글, 좋아요?
+        // 댓글 정보 추가
+        List<CommentResponseDto> commentResponseList = new ArrayList<>();
+        for (CommentEntity comment : article.getComments()) {
+            CommentResponseDto commentResponseDto = new CommentResponseDto();
+            commentResponseDto.setId(comment.getId());
+            commentResponseDto.setUserId(comment.getUser().getId());
+            commentResponseDto.setUsername(comment.getUser().getUsername());
+            commentResponseDto.setContent(comment.getContent());
+            commentResponseDto.setDeletedAt(comment.getDeletedAt());
+            commentResponseList.add(commentResponseDto);
+        }
+        responseDto.setComments(commentResponseList);
 
         return responseDto;
     }
@@ -152,7 +167,8 @@ public class ArticleService {
 
         // 게시물 삭제 대신 삭제되었다는 표시 (deletedAt 필드에 현재 시간 설정)
         article.setDeletedAt(LocalDateTime.now());
-        articleRepository.save(article);
+        article = articleRepository.save(article);
+        log.info(String.valueOf(article.getDeletedAt()));
 
         return new ResponseDto("게시물이 삭제되었습니다.");
     }
