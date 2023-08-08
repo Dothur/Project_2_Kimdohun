@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "e104a08b-6918-4d55-8bd1-04c82b4e0ed8",
+		"name": "Project-API-part3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28054685"
+	},
+	"item": [
+		{
+			"name": "회원가입 & JWT 발급 & 프로필사진 업로드 API : Users",
+			"item": [
+				{
+					"name": "[로그인(토큰발급)] : POST /users/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"dohun\",\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[로그인 2번 유저 테스트용] : POST /users/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"minsu\",\n    \"password\" : \"1212\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[회원 가입] : POST /users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"dohun\",\n    \"password\" : \"1234\",\n    \"passwordCheck\" : \"1234\",\n    \"email\" : \"dohun@gmail.com\",\n    \"phone\" : \"010-1234-1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[회원 가입 2번 유저 테스트용] : POST /users/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"minsu\",\n    \"password\" : \"1212\",\n    \"passwordCheck\" : \"1212\",\n    \"email\" : \"minsu@gmail.com\",\n    \"phone\" : \"010-1212-1212\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[JWT 발급] : POST /token/issue Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJkb2h1biIsImlhdCI6MTY5MDkwNzE2MiwiZXhwIjoxNjkwOTEwNzYyfQ.txfIkZGmzHk1fCEhGD03qepz1HJE4ccg35qpW-jvUGnko8NKTekoEF4rRN8wzYIbuTQh3TpCdMt5dJqFGEA-_Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"dohun\",\n    \"password\" : \"1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/token/issue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"token",
+								"issue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[프로필 사진 업로드] : POST /users/update-image",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkb2h1biIsImlhdCI6MTY5MTQ5NjM3NiwiZXhwIjoxNjkxNDk5OTc2fQ.Y3rqHYwXnPG7H3P79-xTnMC8onoayEMIK0H6Dw0QqGwQXai_Gv_jDEUg3xfpud2B",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/Users/dohun/Pictures/Arthur/excited.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/users/update-image",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"users",
+								"update-image"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "피드 구현 API : Articles",
+			"item": [
+				{
+					"name": "[피드 생성] : POST /articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkb2h1biIsImlhdCI6MTY5MTQ5NTk2NywiZXhwIjoxNjkxNDk5NTY3fQ.wkyeFn-86d7ZlZza2rD2_CiDXYuazI6rwGkb_H_8HHap0xu_b8Ug92zZ8lXQFbXS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "오운완",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "완료!",
+									"type": "text"
+								},
+								{
+									"key": "representativeImage",
+									"type": "file",
+									"src": "/Users/dohun/Pictures/Arthur/proof1-white.png"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/Users/dohun/Pictures/Arthur/sad1.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[피드 목록 조회] : GET /articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/articles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[피드 단독 조회 & 댓글 조회] : GET /articles/{articleId}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/articles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[피드 수정] : PUT /articles/{articleId}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkb2h1biIsImlhdCI6MTY5MTQ5NTk2NywiZXhwIjoxNjkxNDk5NTY3fQ.wkyeFn-86d7ZlZza2rD2_CiDXYuazI6rwGkb_H_8HHap0xu_b8Ug92zZ8lXQFbXS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "즐거운 여행",
+									"type": "text"
+								},
+								{
+									"key": "content",
+									"value": "즐겁다!",
+									"type": "text"
+								},
+								{
+									"key": "representativeImage",
+									"type": "file",
+									"src": "/Users/dohun/Pictures/Arthur/standing.jpg"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/Users/dohun/Pictures/Arthur/ugly.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/articles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[피드 삭제] : DELETE /articles/{articleId}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJkb2h1biIsImlhdCI6MTY5MTQ5NTk2NywiZXhwIjoxNjkxNDk5NTY3fQ.wkyeFn-86d7ZlZza2rD2_CiDXYuazI6rwGkb_H_8HHap0xu_b8Ug92zZ8lXQFbXS",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/articles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "피드 댓글구현 API : Comments",
+			"item": [
+				{
+					"name": "[댓글 등록] : POST /comments/{articleId}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtaW5zdSIsImlhdCI6MTY5MTQ5NTk4OCwiZXhwIjoxNjkxNDk5NTg4fQ.AwoeACGmao6zA9eYmTJgnCxyRrMHoChem_PfugTs4pS4nHuzVB2xatWz3S3spLuU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\" : \"좋네요\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[댓글 수정] : PUT /comments/{commentId}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtaW5zdSIsImlhdCI6MTY5MTQ5NTk4OCwiZXhwIjoxNjkxNDk5NTg4fQ.AwoeACGmao6zA9eYmTJgnCxyRrMHoChem_PfugTs4pS4nHuzVB2xatWz3S3spLuU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\" : \"너무 좋네요\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "[댓글 삭제] : DELETE : /comments/{commentId}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtaW5zdSIsImlhdCI6MTY5MTQ5NTk4OCwiZXhwIjoxNjkxNDk5NTg4fQ.AwoeACGmao6zA9eYmTJgnCxyRrMHoChem_PfugTs4pS4nHuzVB2xatWz3S3spLuU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "피드 좋아요 기능 API : Comments",
+			"item": [
+				{
+					"name": "[피드 좋아요] : POST /likes/articles/1",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJtaW5zdSIsImlhdCI6MTY5MTQ5NTk4OCwiZXhwIjoxNjkxNDk5NTg4fQ.AwoeACGmao6zA9eYmTJgnCxyRrMHoChem_PfugTs4pS4nHuzVB2xatWz3S3spLuU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/likes/articles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"likes",
+								"articles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
