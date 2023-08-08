@@ -43,8 +43,11 @@ public class WebSecurityConfig {
                                 ).permitAll()
                                 .requestMatchers(
                                         "/users/update-image",
-                                        "/articles", // 추가한 엔드포인트
-                                        "/articles/**" // 추가한 엔드포인트의 하위 경로들
+                                        "/articles",
+                                        "/articles/**",
+                                        "/comments",
+                                        "/comments/**",
+                                        "/likes/**"
                                 )
                                 .authenticated()
                                 .anyRequest()
