@@ -24,6 +24,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    // 로그인 엔드포인트
     @PostMapping("/login")
     public ResponseEntity<JwtTokenDto> login(
             @RequestBody LoginRequestDto loginRequestDto
@@ -32,10 +33,12 @@ public class UserController {
         return ResponseEntity.ok(jwtTokenDto);
     }
 
+    // 회원가입 엔드포인트
     @PostMapping("/register")
     public ResponseEntity<ResponseDto> register(
             @RequestBody RegisterRequestDto registerRequestDto
     ) {
+        // 입력한 패스워드와 패스워드 확인이 일치하지 않으면 예외 발생
         if (!registerRequestDto.getPassword().equals(registerRequestDto.getPasswordCheck())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "패스워드와 패스워드 확인이 일치하지 않습니다");
         }
@@ -43,6 +46,7 @@ public class UserController {
         return ResponseEntity.ok(responseDto);
     }
 
+    // 프로필 이미지 업데이트 엔드포인트
     @PutMapping(value = "/update-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResponseDto> userUpdateImage(
             @RequestParam(value = "image") MultipartFile multipartFile

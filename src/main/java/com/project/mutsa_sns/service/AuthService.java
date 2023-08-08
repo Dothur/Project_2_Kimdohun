@@ -21,17 +21,21 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
+    // 현재 로그인한 사용자 정보 가져오기
     public UserEntity getUser() {
+        // Authorization 헤더에서 토큰 추출
         String token = extractTokenFromHeader(request.getHeader(HttpHeaders.AUTHORIZATION));
         if (!jwtTokenUtils.validate(token)) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
+        // 토큰을 해석하여 사용자명 추출
         String username = jwtTokenUtils.parseClaims(token).getSubject();
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
+    // 헤더에서 토큰 추출
     private String extractTokenFromHeader(String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);

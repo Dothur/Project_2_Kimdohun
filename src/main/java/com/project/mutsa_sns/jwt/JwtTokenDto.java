@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class JwtTokenDto {
-    private String token;
+    private String token; // JWT 토큰
 }

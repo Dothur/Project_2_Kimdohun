@@ -16,6 +16,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    // 댓글 생성 엔드포인트
     @PostMapping("/{articleId}")
     public ResponseEntity<ResponseDto> createComment(
             @PathVariable Long articleId,
@@ -25,6 +26,7 @@ public class CommentController {
         return ResponseEntity.ok(response);
     }
 
+    // 댓글 수정 엔드포인트
     @PutMapping("/{commentId}")
     public ResponseEntity<ResponseDto> updateComment(
             @PathVariable Long commentId,
@@ -34,6 +36,7 @@ public class CommentController {
         return ResponseEntity.ok(response);
     }
 
+    // 댓글 삭제 엔드포인트
     @DeleteMapping("/{commentId}")
     public ResponseEntity<ResponseDto> deleteComment(@PathVariable Long commentId) {
         ResponseDto response = commentService.deleteComment(commentId);

@@ -23,6 +23,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
+    // 게시물 생성 엔드포인트
     @PostMapping
     public ResponseEntity<ResponseDto> createArticle(
             @RequestParam String title,
@@ -34,18 +35,21 @@ public class ArticleController {
         return ResponseEntity.ok(response);
     }
 
+    // 게시물 목록 조회 엔드포인트
     @GetMapping
     public ResponseEntity<List<ArticleListResponseDto>> getArticleList() {
         List<ArticleListResponseDto> responseDtoList = articleService.getArticleList();
         return ResponseEntity.ok(responseDtoList);
     }
 
+    // 게시물 상세 조회 엔드포인트
     @GetMapping("/{articleId}")
     public ResponseEntity<ArticleDetailResponseDto> getArticleDetail(@PathVariable Long articleId) {
         ArticleDetailResponseDto responseDto = articleService.getArticleDetail(articleId);
         return ResponseEntity.ok(responseDto);
     }
 
+    // 게시물 수정 엔드포인트
     @PutMapping("/{articleId}")
     public ResponseEntity<ResponseDto> updateArticle(
             @PathVariable Long articleId,
@@ -58,6 +62,7 @@ public class ArticleController {
         return ResponseEntity.ok(response);
     }
 
+    // 게시물 삭제 엔드포인트
     @DeleteMapping("/{articleId}")
     public ResponseEntity<ResponseDto> deleteArticle(@PathVariable Long articleId) {
         ResponseDto response = articleService.deleteArticle(articleId);

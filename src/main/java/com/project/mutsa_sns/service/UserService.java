@@ -32,6 +32,7 @@ public class UserService {
     private final JpaUserDetailsManager manager;
     private final AuthService authService;
 
+    // 로그인 기능
     public JwtTokenDto loginUser(LoginRequestDto loginRequestDto) {
         String username = loginRequestDto.getUsername();
 
@@ -50,6 +51,7 @@ public class UserService {
         return tokenDto;
     }
 
+    // 회원가입 기능
     public ResponseDto registerUser(RegisterRequestDto registerRequestDto) {
         String username = registerRequestDto.getUsername();
         String password = registerRequestDto.getPassword();
@@ -70,6 +72,7 @@ public class UserService {
         return new ResponseDto("회원가입을 성공했습니다");
     }
 
+    // 프로필 이미지 업로드 기능
     public ResponseDto uploadProfileImage(MultipartFile multipartFile) {
         UserEntity userEntity = authService.getUser();
 

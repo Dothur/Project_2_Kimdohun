@@ -4,5 +4,5 @@ import lombok.Data;
 
 @Data
 public class CommentRequestDto {
-    private String content;
+    private String content; // 댓글 내용
 }
