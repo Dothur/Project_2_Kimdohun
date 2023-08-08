@@ -144,101 +144,49 @@
 
 ## 🔄 _History_
 
-[//]: # (### 📅 _23.07.26_)
+### 📅 _Day 1_
 
-[//]: # ()
-[//]: # (#### 1. _**프로젝트 세팅하기**_)
 
-[//]: # ()
-[//]: # (- `.yaml` 파일 설정)
+#### 1. _**프로젝트 세팅하기**_
 
-[//]: # (    - jwt secret)
+- dependency setting
+- .yaml setting
 
-[//]: # ()
-[//]: # (- `build.gradle` Dependency 추가)
+#### 2. _**User 회원가입과 로그인시 Jwt 발급**_
 
-[//]: # (    - Spring Security)
+- 회원가입이 가능하고 로그인시 jwt 를 발급해서 이 이후의 서비스에 토큰 인증 방식으로 사용함
+- 로그인한 상태에서 프로필 이미지를 등록할 수 있음
 
-[//]: # (    - Thymeleaf)
 
-[//]: # ()
-[//]: # (### 📅 _23.07.27_)
+### 📅 _Day 2_
 
-[//]: # ()
-[//]: # (#### 1. **_회원가입, 로그인, 로그아웃 구현_**)
 
-[//]: # ()
-[//]: # (- Spring security setting)
+#### 1. **_Article entity, repository 추가_**
 
-[//]: # (- UserEntity email, phone, address 도 회원가입 시 기입 가능 &#40; db 에 저장 됨 &#41;)
+#### 2. **_Article 피드 crud 구현_**
 
-[//]: # (- username 이 중복인지 아닌지 판별 -> 중복일때 사용자 생성 불가)
+- 피드 생성, 목록조회, 단일조회, 피드 수정, 피드 삭제(표시만)
 
-[//]: # (- formLogin, logout 통해 구현)
+#### 3. **_SecurityConfig 수정_**
 
-[//]: # (- `/users/login : .permitAll&#40;&#41;` 로 모든 사용자 접근가능)
 
-[//]: # (- `/users/register : .anonymous&#40;&#41;` 로 인증 되지 않은 모든 사용자 &#40;로그인되지 않은&#41; 접근 가능)
+### 📅 _Day 3_
 
-[//]: # (- `/users/my-profile & /logout : .authenticated&#40;&#41;` 로 허가된 사용자만 접근 가능)
 
-[//]: # ()
-[//]: # (#### 2. **_`build.gradle` Dependency 추가_**)
+#### 1. **_Comment & Like 기능 추가_**
 
-[//]: # ()
-[//]: # (- add jjwt)
+- 피드 댓글 등록, 수정, 삭제
+- 댓글 조회는 피드 단독조회시 조회가능
+- 피드 좋아요 기능 : 피드 생성자는 좋아요를 누를 수 없음
 
-[//]: # ()
-[//]: # (#### 3. **_JWT Token 인증&#40;발급&#41; 구현 추가_**)
+#### 2. **_deleted_at 수정_**
 
-[//]: # ()
-[//]: # (- TokenController)
+#### 3. **_Postman Collection 업로드 & Readme update & 설명 주석 추가_**
 
-[//]: # (    - JWT 발급 `/token/issue`)
+### 📅 _Day 4_
 
-[//]: # (    - /token/secured : Token success test 인증이 필요한 url)
+- 미구현
 
-[//]: # (- Jwt RequestDto, TokenDto 추가)
-
-[//]: # (- JwtTokenUtils 추가)
-
-[//]: # (    - validate method : Jwt 유효한지 판단)
-
-[//]: # (    - parseClaims : Jwt 받아서 해석 후 사용자 정보 회수)
-
-[//]: # (    - generateToken : 사용자 정보 바탕으로 Jwt 생성)
-
-[//]: # (- JwtTokenFilter 추가)
-
-[//]: # (    - JWT가 포함되어 있으면 포함되어 있는 헤더를 요청)
-
-[//]: # (    - JWT 를 회수하여 JWT 가 정상적인 JWT 인지 판단)
-
-[//]: # (- JwtTokenFilter 등록, requestMatchers 수정)
-
-[//]: # ()
-[//]: # (### 📅 _23.08.02_)
-
-[//]: # ()
-[//]: # (#### 1. **_Day2 - Day3 미션 : 관계, 기능접근 설정_**)
-
-[//]: # ()
-[//]: # (- Endpoint 마다 테스트 완료)
-
-[//]: # (- WebSecurityConfig 에서 url 별 접근 지정)
-
-[//]: # (- Entity 끼리 ManyToOne, OneToMany 로 Join)
-
-[//]: # (    - 전체적으로 요구사항에 따라 관계 설정)
-
-[//]: # (- dto 도 변동에 따라 수정)
-
-[//]: # (- Service 코드들 전체적으로 이전에 writer & password 로 인증하였던 코드)
-
-[//]: # (    - 발급한 토큰으로 인증하도록 전체 수정 &#40;요구사항에 따라 단순 조회 등은 인증없이 조회가능&#41;)
-
-[//]: # ()
-[//]: # (#### 2. **_Postman Collection 업로드 & Readme update_**)
 
 <br>
 
