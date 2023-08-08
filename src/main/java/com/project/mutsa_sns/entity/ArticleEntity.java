@@ -29,9 +29,20 @@ public class ArticleEntity {
     @Column
     private boolean draft;
 
-    @Column
+    @Column(name = "deleted_at")
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "article")
     private List<ArticleImageEntity> articleImages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "article")
+    private List<CommentEntity> comments = new ArrayList<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "article_likes",
+            joinColumns = @JoinColumn(name = "article_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
+    private List<UserEntity> likes = new ArrayList<>();
 }
