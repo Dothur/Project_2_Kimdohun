@@ -31,7 +31,10 @@ public class WebSecurityConfig {
                                 .requestMatchers(
                                         "/users/login",
                                         "/users/register",
-                                        "/token/issue"
+                                        "/users/update-image",
+                                        "/token/issue",
+                                        "/articles", // 추가한 엔드포인트
+                                        "/articles/**" // 추가한 엔드포인트의 하위 경로들
                                 )
                                 .permitAll()
                                 // 그 외의 모든 엔드포인트는 인증이 필요
