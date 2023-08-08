@@ -3,6 +3,7 @@ package com.project.mutsa_sns.config;
 import com.project.mutsa_sns.jwt.JwtTokenFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -31,13 +32,21 @@ public class WebSecurityConfig {
                                 .requestMatchers(
                                         "/users/login",
                                         "/users/register",
+                                        "/token/issue"
+                                )
+                                .permitAll()
+                                .requestMatchers(
+                                        HttpMethod.GET, "/articles"
+                                ).permitAll()
+                                .requestMatchers(
+                                        HttpMethod.GET, "/articles/**"
+                                ).permitAll()
+                                .requestMatchers(
                                         "/users/update-image",
-                                        "/token/issue",
                                         "/articles", // 추가한 엔드포인트
                                         "/articles/**" // 추가한 엔드포인트의 하위 경로들
                                 )
-                                .permitAll()
-                                // 그 외의 모든 엔드포인트는 인증이 필요
+                                .authenticated()
                                 .anyRequest()
                                 .authenticated()
                 )
