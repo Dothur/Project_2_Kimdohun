@@ -45,15 +45,10 @@ public class UserController {
 
     @PutMapping(value = "/update-image", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<ResponseDto> userUpdateImage(
-            Authentication authentication,
             @RequestParam(value = "image") MultipartFile multipartFile
     ) {
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Authentication required");
-        }
-
         // 이미지 업로드 서비스 호출
-        ResponseDto responseDto = userService.uploadProfileImage(authentication.getName(), multipartFile);
+        ResponseDto responseDto = userService.uploadProfileImage(multipartFile);
 
         return ResponseEntity.ok(responseDto);
     }

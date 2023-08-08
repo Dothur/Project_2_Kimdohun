@@ -30,6 +30,7 @@ public class UserService {
     private final JwtTokenUtils jwtTokenUtils;
     private final PasswordEncoder passwordEncoder;
     private final JpaUserDetailsManager manager;
+    private final AuthService authService;
 
     public JwtTokenDto loginUser(LoginRequestDto loginRequestDto) {
         String username = loginRequestDto.getUsername();
@@ -69,11 +70,10 @@ public class UserService {
         return new ResponseDto("회원가입을 성공했습니다");
     }
 
-    public ResponseDto uploadProfileImage(String authenticatedUsername, MultipartFile multipartFile) {
-        UserEntity userEntity = userRepository.findByUsername(authenticatedUsername)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    public ResponseDto uploadProfileImage(MultipartFile multipartFile) {
+        UserEntity userEntity = authService.getUser();
 
-        String profileDir = String.format("media/%s/", userEntity.getId());
+        String profileDir = String.format("media/%d/", userEntity.getId());
 
         try {
             Files.createDirectories(Path.of(profileDir));
